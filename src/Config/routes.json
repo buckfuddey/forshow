@@ -1,0 +1,43 @@
+[
+	{
+		"endpoint" 		: "/customer/register",
+		"controller" 	: "CustomerController@create",
+		"method" 		: "POST",
+		"protect"		: "true"
+	},
+	{
+		"endpoint" 		: "/customer/{customer}",
+		"controller" 	: "CustomerController@show",
+		"method" 		: "GET",
+		"protect"		: "true"
+	},
+	{
+		"endpoint" 		: "/order",
+		"controller" 	: "OrderController@create",
+		"method" 		: "POST",
+		"protect"		: "true"
+	},
+	{
+		"endpoint" 		: "/order/{order}",
+		"controller" 	: "OrderController@show",
+		"method" 		: "GET",
+		"protect"		: "true"
+	},
+	{
+		"endpoint" 		: "/order/{order}/change",
+		"controller" 	: "OrderController@update",
+		"method" 		: "PATCH",
+		"protect"		: "true"
+	},
+	{
+		"endpoint" 		: "/order/articles",
+		"controller" 	: "OrderController@articles",
+		"method" 		: "GET",
+		"protect"		: "true"
+	},
+	{
+		"endpoint"		: "/docs",
+		"controller"	: "Controller@docs",
+		"method"		: "GET"
+	}
+]

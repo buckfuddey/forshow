@@ -1,0 +1,94 @@
+{
+	"title":"API documentation",
+	"info": [
+		"This is a REST API, all non-json data requests sent through either POST, PATCH or PUT will be rejected.",
+		"Variables in postfield_structure enclosed in {} are only restricted to variable type.",
+		"Variables in postfield_structure enclosed by [] are restricted to the given values.",
+		"Keys with multiple values entail that one(have to) or more(can be) present."
+	],	
+	"security":{
+		"Info" : "All endpoints except this one require a security Header.",
+		"security_header" : "PLAYMUSIC: WITHME"
+	},
+	"endpoints":{
+		"Create customer": {
+			"uri": "/customer/register",
+			"method" : "POST",
+			"postfield_structure": {
+				"name":"{your company name} | STRING",
+				"type":"[small_company || large_company || private] | STRING"
+			},
+			"return_values" : [
+				"customer_number"
+			]
+		},
+		"Show customer": {
+			"uri": "/customer/{customer_number}",
+			"method": "GET",
+			"return_values": [
+				"customer_number",
+		        "name",
+		        "customer_type"
+			]
+		},
+		"Create order": {
+			"uri": "/order",
+			"method": "POST",
+			"postfield_structure": {
+				"customer_number": "{customer_number} | STRING",
+				"articles":{
+					"[pen || paper || notepad || eraser]" : "INT > 0"
+				}
+			},
+			"return_values":[
+				"order_number"
+			]
+		},
+		"Show order": {
+			"uri": "/order/{order_number}",
+			"method" : "GET",
+			"return_values":{
+				"order": {
+		            "customer_name" : "xxx",
+		            "customer_number":"xxx",
+		            "order_number": "xxx",
+		            "requested_at": "xxx",
+		            "articles": [
+		                {
+		                    "article_name": "xxx",
+		                    "article_amount": 0,
+		                    "price": 0,
+		                    "total_price": 0,
+		                    "reduced_price": 0,
+		                    "discount": 0,
+		                    "requested_at": "xxx",
+		                    "updated_at": "xxx"
+		                }
+					],
+					"total_price": 0,
+            		"reduced_price": 0,
+            		"total_discount": 0
+
+				}	
+			}	
+		},
+		"Change order" : {
+			"uri": "/order/{order_number}/change",
+			"method":"PATCH",
+			"postfield_structure": {
+				"articles":{
+					"[pen || paper || notepad || eraser]" : "INT > 0"
+				}
+			},
+			"return_values":"Same as show order"
+		},
+		"Show articles": {
+			"uri" : "/order/articles",
+			"method" : "GET",
+			"return_values": [
+				"article_name",
+				"price"
+			]
+		}
+	}
+}
